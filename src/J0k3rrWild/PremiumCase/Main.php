@@ -7,6 +7,7 @@ namespace J0k3rrWild\PremiumCase;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\TextFormat as TF;
 use pocketmine\item\Item;
+use pocketmine\item\Block;
 use pocketmine\item\ItemBlock;
 use pocketmine\event\Listener;
 use pocketmine\command\CommandSender;
@@ -107,7 +108,7 @@ class Main extends PluginBase implements Listener{
         $player = $pevent->getPlayer();
        
         $hand = $player->getInventory()->getItemInHand();
-        if($hand->getId() === $this->pandorkaId){
+        if($hand->getCustomName() === TF::GOLD."Pandorka"){
         //  $block = $this->getBlock();
          
          $chance = mt_rand(1, 100);
@@ -178,10 +179,16 @@ class Main extends PluginBase implements Listener{
             if(isset($args[2]) && is_numeric($args[2]) ){
              
              
-             if($checker = $this->getServer()->getPlayer($args[1])){
-                $target = $this->getServer()->getPlayer($args[1]);
-                $target->getInventory()->addItem(Item::get($this->pandorkaId, 0, $args[2]));
-                // $this->onItemHeld();
+             if($target = $this->getServer()->getPlayer($args[1])){
+    
+                    $item = Item::get(Item::ENDER_CHEST);
+                    $item->setCount($args[2]);  
+                    $item->setCustomName(TF::GOLD."Pandorka");
+                    $target->getInventory()->addItem($item);
+                
+            
+                
+
                 $target->sendMessage(TF::GREEN."Otrzymałeś ".$args[2]." pandorek od ".$p->getName());
                 $p->sendMessage(TF::GREEN."Gracz ".$target->getName()." otrzymał ".$args[2]." pandorek");
              }else{
@@ -203,11 +210,21 @@ class Main extends PluginBase implements Listener{
              if($p!==$target){
               if($p->getName() != "CONSOLE"){
                 $count++;
-                $target->getInventory()->addItem(Item::get($this->pandorkaId, 0, $args[1]));
+
+                    $item = Item::get(Item::ENDER_CHEST);
+                    $item->setCount($args[1]);  
+                    $item->setCustomName(TF::GOLD."Pandorka");
+                    $target->getInventory()->addItem($item);
+                
                 $target->sendMessage(TF::GREEN."Otrzymałeś ".$args[1]." pandorek od ".$p->getName());
               }else{
                 $count++;
-                $target->getInventory()->addItem(Item::get($this->pandorkaId, 0, $args[1]));
+               
+                    $item = Item::get(Item::ENDER_CHEST);
+                    $item->setCount($args[1]);  
+                    $item->setCustomName(TF::GOLD."Pandorka");
+                    $target->getInventory()->addItem($item);
+                
                 $target->sendMessage(TF::GREEN."Otrzymałeś ".$args[1]." pandorek od wlasciciela");
 
               }
