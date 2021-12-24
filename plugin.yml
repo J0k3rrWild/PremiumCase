@@ -3,24 +3,16 @@ name: PremiumCase
 author: J0k3rrWild
 version: 1.4.2
 main: J0k3rrWild\PremiumCase\Main
-api: 3.25.1
+api: 4.0.3
 website: https://github.com/J0k3rrWild
-commands:
- pandorka:
-  description: Główna komenda pandorek
-  permission: pandorka.command.pandorka
-  usage: /pandorka giveall/give <amount> | reload
-  aliases: [pandorka, pd, pc, premiumcase]
 permissions:
   premiumcase:
     default: op
     description: Daje uprawnienia do wszystkich komend pandorki
-    children:
-      premiumcase.reload:
-        default: op
-        description: Daje uprawnienia do przeładowania konfiguracji pandorek
-        children:
-         premiumcase.give:
-         default: op
-         description: Daje uprawnienia do dawania pandorek
+  premiumcase.reload:
+    default: op
+    description: Daje uprawnienia do przeładowania konfiguracji pandorek
+  premiumcase.give:
+    default: op
+    description: Daje uprawnienia do dawania pandorek
 ...

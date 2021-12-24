@@ -24,7 +24,9 @@ use pocketmine\Server;
 use pocketmine\event\player\PlayerItemHeldEvent;
 use pocketmine\level\particle\DestroyBlockParticle;
 use pocketmine\network\mcpe\protocol\{AddEntityPacket, ExplodePacket, RemoveEntityPacket, UseItemPacket};
-use Refaltor\Natof\CustomItem\CustomItem;
+use J0k3rrWild\PremiumCase\Commands;
+use pocketmine\item\ItemIdentifier;
+use pocketmine\event\CancellableTrait;
 
 
 class Main extends PluginBase implements Listener{
@@ -44,7 +46,9 @@ class Main extends PluginBase implements Listener{
   public $pandorkaId = 130;
   
 
-    public function onEnable(){
+    public function onEnable(): void{
+        $server = $this->getServer();
+        $server->getCommandMap()->register("premiumcase", new Commands($this));
         $this->getServer()->getPluginManager()->registerEvents($this,$this);
         $this->getLogger()->info(TF::GREEN."[PremiumCase] > Plugin oraz konfiguracja została załadowana pomyślnie");
         $this->index = 0;
@@ -77,7 +81,8 @@ class Main extends PluginBase implements Listener{
             }    
         } 
     }
-
+     
+    //API 4.x = SHIT <-- FUNCTION TODO
     public function effect($player){
 
         $light = new AddActorPacket();
@@ -116,130 +121,29 @@ class Main extends PluginBase implements Listener{
            
              
             $player->sendMessage("§8[§bPandorka§8] §fZnaleziono §8(§b".$this->amountArray[$chance]."§8) §f".$this->nameArray[$chance]);
-            
-            $player->getInventory()->addItem(Item::get($this->idArray[$chance], 0, $this->amountArray[$chance])); 
-            $player->getInventory()->removeItem(Item::get($this->pandorkaId, 0, 1));
+                       //Lotto identify 
+                        $ident = new ItemIdentifier($this->idArray[$chance], 0);
+                        $item = new Item($ident);
+                        $item->setCount((int)$this->amountArray[$chance]);
+                        
+                      //Case identify
+                      $identc = new ItemIdentifier($this->pandorkaId, 0);
+                      $itemc = new Item($identc);
+                      $itemc->setCount(1);
+
+            $player->getInventory()->addItem($item); 
+            $player->getInventory()->removeItem($itemc);
            
-            $this->effect($player);
+            // $this->effect($player);
             
-            $pevent->setCancelled(true);
+           
+           $pevent->cancel();
            
             }
         
 
   }
   
- 
-  public function onCommand(CommandSender $p, Command $cmd, string $label, array $args) : bool{
-    if(!isset($args[0])) return false;
-    
-    $action = strtolower($args[0]);
-    
-    
-    switch($action){ 
-        case "reload":
-            if($p->hasPermission("premiumcase") || $p->hasPermission("premiumcase.reload")){
-                $this->index = 0;
-                $this->reloadConfig();
-                $this->cfg = $this->getConfig()->getAll();
-        
-                    
-                for ($i = 1; $i < count($this->cfg)+1; $i++) {
-                    
-                    $this->chanceArray[$i] = $this->cfg[$i]["szansa"];
-                    // var_dump($this->chanceArray[$i]);
-                }
-        
-                //    var_dump($this->chanceArray);
-        
-                for ($i = 1; $i <= count($this->cfg); $i++) {
-                    
-                $itemAmounts = $this->chanceArray[$i];
-                
-                    
-                    for ($y = 1; $y<=$itemAmounts; $y++) {
-                    
-                    $this->index++;
-                    $this->idArray[$this->index] = $this->cfg[$i]["id"];
-                    $this->nameArray[$this->index] = $this->cfg[$i]["nazwa"];
-                    $this->amountArray[$this->index] = $this->cfg[$i]["ilosc"];
-                        // var_dump($this->nameArray[$this->index]);
-                        
-                    }    
-                } 
-                $this->getLogger()->info(TF::GREEN."[PremiumCase] > Plugin oraz konfiguracje zostały przeładowane pomyślnie");
-                $p->sendMessage(TF::GREEN."[PremiumCase] > Plugin oraz konfiguracje zostały przeładowane pomyślnie");
-                return true;
-            }
-            break; 
-        case "give":
-         if($p->hasPermission("premiumcase") || $p->hasPermission("premiumcase.give")){
-           
-           
-            if(isset($args[2]) && is_numeric($args[2]) ){
-             
-             
-             if($target = $this->getServer()->getPlayer($args[1])){
-    
-                    $item = Item::get(Item::ENDER_CHEST);
-                    $item->setCount($args[2]);  
-                    $item->setCustomName(TF::GOLD."Pandorka");
-                    $target->getInventory()->addItem($item);
-                
-            
-                
-
-                $target->sendMessage(TF::GREEN."Otrzymałeś ".$args[2]." pandorek od ".$p->getName());
-                $p->sendMessage(TF::GREEN."Gracz ".$target->getName()." otrzymał ".$args[2]." pandorek");
-             }else{
-                $p->sendMessage(TF::RED."[PremiumCase] > Upewnij się że wpisałeś poprawny nick lub czy gracz jest online!");
-             }
-         }else{
-             $p->sendMessage(TF::RED."[PremiumCase] > Upewnij się że wpisałeś wszystkie argumenty oraz ze są poprawne!");
-             $p->sendMessage(TF::RED."/pc give <nick> <ilosc>");
-         } 
-       
-         
-        }
-        break;
-        case "giveall":
-         if($p->hasPermission("premiumcase") || $p->hasPermission("premiumcase.give")){  
-          if(isset($args[1]) && is_numeric($args[1])){
-            $count = 0;
-            foreach ($this->getServer()->getOnlinePlayers() as $target) {
-             if($p!==$target){
-              if($p->getName() != "CONSOLE"){
-                $count++;
-
-                    $item = Item::get(Item::ENDER_CHEST);
-                    $item->setCount($args[1]);  
-                    $item->setCustomName(TF::GOLD."Pandorka");
-                    $target->getInventory()->addItem($item);
-                
-                $target->sendMessage(TF::GREEN."Otrzymałeś ".$args[1]." pandorek od ".$p->getName());
-              }else{
-                $count++;
-               
-                    $item = Item::get(Item::ENDER_CHEST);
-                    $item->setCount($args[1]);  
-                    $item->setCustomName(TF::GOLD."Pandorka");
-                    $target->getInventory()->addItem($item);
-                
-                $target->sendMessage(TF::GREEN."Otrzymałeś ".$args[1]." pandorek od wlasciciela");
-
-              }
-             }
-            }
-            $p->sendMessage(TF::GREEN."[PremiumCase] > Przekazałeś po ".$args[1]." pandorek dla ".$count." graczy");
-          }else{
-                $p->sendMessage(TF::RED."[PremiumCase] > Upewnij się że wpisales poprawny nick lub czy gracz jest online!");
-             } 
-            }   
-            break;
-      }
-     
-      return true;
-  }
 }
 
 
