@@ -2,7 +2,7 @@
 
 You need this plugin for API 4.0.3 instead? [CLICK HERE](https://github.com/J0k3rrWild/PremiumCase/tree/api4)
 
-[![](https://poggit.pmmp.io/shield.state/ChatRewardEvent)](https://poggit.pmmp.io/p/ChatRewardEvent)
+[![](https://poggit.pmmp.io/shield.state/PremiumCase)](https://poggit.pmmp.io/p/PremiumCase)
 
 ## General info
 
