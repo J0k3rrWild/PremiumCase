@@ -1,0 +1,10 @@
+--- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/J0k3rrWild/PremiumCase
+build-by-default: true
+branches:
+- master
+- api4
+projects:
+  PremiumCase:
+    path: ""
+    icon: "icon.png"
+...
