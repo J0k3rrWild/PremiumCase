@@ -8,11 +8,11 @@ website: https://github.com/J0k3rrWild
 permissions:
   premiumcase:
     default: op
-    description: Daje uprawnienia do wszystkich komend pandorki
+    description: Gives permission to all premium case commands 
   premiumcase.reload:
     default: op
-    description: Daje uprawnienia do przeładowania konfiguracji pandorek
+    description: Gives permission to reload premium case configurations
   premiumcase.give:
     default: op
-    description: Daje uprawnienia do dawania pandorek
+    description: Gives you the power to give premium case
 ...

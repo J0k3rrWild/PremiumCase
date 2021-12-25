@@ -26,7 +26,7 @@ class Commands extends Command implements PluginOwned{
     use PluginOwnedTrait;
     
     public function __construct(Main $plugin){
-		parent::__construct("premiumcase", "Główna komenda pandorek", "/pandorka giveall/give <amount> | reload", ["pandorka", "pd", "pc", "premiumcase"]);
+		parent::__construct("premiumcase", "Main premium case command", "/pc giveall <amount> | give <amount> <player>| reload", ["pc", "premiumcase"]);
 		$this->setPermission("premiumcase.give");
 		$this->plugin = $plugin;
 	}
