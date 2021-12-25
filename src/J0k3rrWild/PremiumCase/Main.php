@@ -50,20 +50,20 @@ class Main extends PluginBase implements Listener{
         $server = $this->getServer();
         $server->getCommandMap()->register("premiumcase", new Commands($this));
         $this->getServer()->getPluginManager()->registerEvents($this,$this);
-        $this->getLogger()->info(TF::GREEN."[PremiumCase] > Plugin oraz konfiguracja została załadowana pomyślnie");
+        $this->getLogger()->info(TF::GREEN."[PremiumCase] > Plugin and configuration loaded");
         $this->index = 0;
         
-        // Wczytanie configa
+        
         $this->cfg = $this->getConfig()->getAll();
 
             
         for ($i = 1; $i < count($this->cfg)+1; $i++) {
             
-            $this->chanceArray[$i] = $this->cfg[$i]["szansa"];
-            // var_dump($this->chanceArray[$i]);
+            $this->chanceArray[$i] = $this->cfg[$i]["chance"];
+            
            }
 
-        //    var_dump($this->chanceArray);
+      
 
         for ($i = 1; $i <= count($this->cfg); $i++) {
             
@@ -74,9 +74,9 @@ class Main extends PluginBase implements Listener{
             
              $this->index++;
              $this->idArray[$this->index] = $this->cfg[$i]["id"];
-             $this->nameArray[$this->index] = $this->cfg[$i]["nazwa"];
-             $this->amountArray[$this->index] = $this->cfg[$i]["ilosc"];
-                // var_dump($this->nameArray[$this->index]);
+             $this->nameArray[$this->index] = $this->cfg[$i]["name"];
+             $this->amountArray[$this->index] = $this->cfg[$i]["amount"];
+               
                 
             }    
         } 
@@ -113,14 +113,14 @@ class Main extends PluginBase implements Listener{
         $player = $pevent->getPlayer();
        
         $hand = $player->getInventory()->getItemInHand();
-        if($hand->getCustomName() === TF::GOLD."Pandorka"){
-        //  $block = $this->getBlock();
+        if($hand->getCustomName() === TF::GOLD."PremiumCase"){
+       
          
          $chance = mt_rand(1, 100);
 
            
              
-            $player->sendMessage("§8[§bPandorka§8] §fZnaleziono §8(§b".$this->amountArray[$chance]."§8) §f".$this->nameArray[$chance]);
+         $player->sendMessage("§8[§bPremiumCase§8] §fYou get §8(§b".$this->amountArray[$chance]."§8) §f".$this->nameArray[$chance]);
                        //Lotto identify 
                         $ident = new ItemIdentifier($this->idArray[$chance], 0);
                         $item = new Item($ident);

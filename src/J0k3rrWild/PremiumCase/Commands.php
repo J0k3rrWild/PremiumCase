@@ -50,12 +50,11 @@ class Commands extends Command implements PluginOwned{
                         
                     for ($i = 1; $i < count($this->plugin->cfg)+1; $i++) {
                         
-                        $this->plugin->chanceArray[$i] = $this->plugin->cfg[$i]["szansa"];
-                        // var_dump($this->plugin->chanceArray[$i]);
+                        $this->plugin->chanceArray[$i] = $this->plugin->cfg[$i]["chance"];
+                    
                     }
             
-                    //    var_dump($this->plugin->chanceArray);
-            
+                    
                     for ($i = 1; $i <= count($this->plugin->cfg); $i++) {
                         
                     $itemAmounts = $this->plugin->chanceArray[$i];
@@ -65,14 +64,14 @@ class Commands extends Command implements PluginOwned{
                         
                         $this->plugin->index++;
                         $this->plugin->idArray[$this->plugin->index] = $this->plugin->cfg[$i]["id"];
-                        $this->plugin->nameArray[$this->plugin->index] = $this->plugin->cfg[$i]["nazwa"];
-                        $this->plugin->amountArray[$this->plugin->index] = $this->plugin->cfg[$i]["ilosc"];
-                            // var_dump($this->plugin->nameArray[$this->plugin->index]);
+                        $this->plugin->nameArray[$this->plugin->index] = $this->plugin->cfg[$i]["name"];
+                        $this->plugin->amountArray[$this->plugin->index] = $this->plugin->cfg[$i]["amount"];
+                            
                             
                         }    
                     } 
-                    $this->plugin->getLogger()->info(TF::GREEN."[PremiumCase] > Plugin oraz konfiguracje zostały przeładowane pomyślnie");
-                    $p->sendMessage(TF::GREEN."[PremiumCase] > Plugin oraz konfiguracje zostały przeładowane pomyślnie");
+                    $this->getLogger()->info(TF::GREEN."[PremiumCase] > Plugin and configuration has been reloaded");
+                    $p->sendMessage(TF::GREEN."[PremiumCase] > Plugin and configuration has been reloaded");
                     return true;
                 }
                 break; 
@@ -88,20 +87,20 @@ class Commands extends Command implements PluginOwned{
                         $ident = new ItemIdentifier($this->plugin->pandorkaId, 0);
                         $item = new Item($ident);
                         $item->setCount((int)$args[2]);
-                        $item->setCustomName(TF::GOLD."Pandorka");
+                        $item->setCustomName(TF::GOLD."PremiumCase");
                         $target->getInventory()->addItem($item);
                     
                 
                     
     
-                    $target->sendMessage(TF::GREEN."Otrzymałeś ".$args[2]." pandorek od ".$p->getName());
-                    $p->sendMessage(TF::GREEN."Gracz ".$target->getName()." otrzymał ".$args[2]." pandorek");
+                        $target->sendMessage(TF::GREEN."[PremiumCase] > You got ".$args[2]." premium cases from ".$p->getName());
+                        $p->sendMessage(TF::GREEN."Player ".$target->getName()." get ".$args[2]." premium cases");
                  }else{
-                    $p->sendMessage(TF::RED."[PremiumCase] > Upewnij się że wpisałeś poprawny nick lub czy gracz jest online!");
+                    $p->sendMessage(TF::RED."[PremiumCase] > Make sure you enter the correct nickname or that the player is online!");
                  }
              }else{
-                 $p->sendMessage(TF::RED."[PremiumCase] > Upewnij się że wpisałeś wszystkie argumenty oraz ze są poprawne!");
-                 $p->sendMessage(TF::RED."/pc give <nick> <ilosc>");
+                $p->sendMessage(TF::RED."[PremiumCase] > Make sure you enter all arguments and that they are correct!");
+                 return false;
              } 
            
              
@@ -118,37 +117,34 @@ class Commands extends Command implements PluginOwned{
     
                         $ident = new ItemIdentifier($this->plugin->pandorkaId, 0);
                         $item = new Item($ident);
-                        $item->setCount((int)$args[2]);
-                        $item->setCustomName(TF::GOLD."Pandorka");
-                        $amount = $this->amountArray[$chance];
+                        $item->setCount((int)$args[1]);
+                        $item->setCustomName(TF::GOLD."PremiumCase");
+                        
 
-                    for($i=1; $i<=$amount; $i++){
+                    
                         $target->getInventory()->addItem($item);
                     
-                    }
-                    $target->sendMessage(TF::GREEN."Otrzymałeś ".$args[1]." pandorek od ".$p->getName());
+                    
+                    $target->sendMessage(TF::GREEN."[PremiumCase] > You got ".$args[2]." premium cases from ".$p->getName());
 
                   }else{
                     $count++;
 
                     $ident = new ItemIdentifier($this->plugin->pandorkaId, 0);
                     $item = new Item($ident);
-                    $item->setCount((int)$args[2]);
-                    $item->setCustomName(TF::GOLD."Pandorka");
-                    $amount = $this->amountArray[$chance];
+                    $item->setCount((int)$args[1]);
+                    $item->setCustomName(TF::GOLD."PremiumCase");
+                    $target->getInventory()->addItem($item);
 
-                    for($i=1; $i<=$amount; $i++){
-                     $target->getInventory()->addItem($item);
-                    
-                    }
-                    $target->sendMessage(TF::GREEN."[MeetMate] > Otrzymałeś ".$args[1]." pandorek od wlasciciela");
+                    $target->sendMessage(TF::GREEN."[PremiumCase] > You got ".$args[1]." premium cases from owner");
     
                   }
                  }
                 }
-                $p->sendMessage(TF::GREEN."[PremiumCase] > Przekazałeś po ".$args[1]." pandorek dla ".$count." graczy");
-              }else{
-                    $p->sendMessage(TF::RED."[PremiumCase] > Upewnij się że wpisales poprawny nick lub czy gracz jest online!");
+                $p->sendMessage(TF::GREEN."[PremiumCase] > You gave ".$args[1]." premium cases to ".$count." players");
+          }else{
+                $p->sendMessage(TF::RED."[PremiumCase] > Make sure you enter the correct nickname or that the player is online!");
+
                  } 
                 }   
                 break;
