@@ -7,6 +7,22 @@ api: 3.25.1
 website: https://github.com/J0k3rrWild
 commands:
  pandorka:
+<<<<<<< HEAD
+  description: PremiumCase main command
+  permission: premiumcase.command.premiumcase
+  usage: /pc giveall <amount> | give <amount> <player>| reload
+  aliases: ["pc", "premiumcase"]
+permissions:
+  premiumcase:
+    default: op
+    description: Gives permission to all premium case commands 
+  premiumcase.reload:
+    default: op
+    description: Gives permission to reload premium case configurations
+  premiumcase.give:
+    default: op
+    description: Gives you the power to give premium case
+=======
   description: Główna komenda pandorek
   permission: pandorka.command.pandorka
   usage: /pandorka giveall/give <amount> | reload
@@ -23,4 +39,5 @@ permissions:
          premiumcase.give:
          default: op
          description: Daje uprawnienia do dawania pandorek
+>>>>>>> 4328da2222e042ccf3459c219afbe7916a5d0fd4
 ...

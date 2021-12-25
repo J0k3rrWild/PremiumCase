@@ -46,7 +46,11 @@ class Main extends PluginBase implements Listener{
 
     public function onEnable(){
         $this->getServer()->getPluginManager()->registerEvents($this,$this);
+<<<<<<< HEAD
+        $this->getLogger()->info(TF::GREEN."[PremiumCase] > Plugin and configuration loaded");
+=======
         $this->getLogger()->info(TF::GREEN."[PremiumCase] > Plugin oraz konfiguracja została załadowana pomyślnie");
+>>>>>>> 4328da2222e042ccf3459c219afbe7916a5d0fd4
         $this->index = 0;
         
         // Wczytanie configa
@@ -55,7 +59,11 @@ class Main extends PluginBase implements Listener{
             
         for ($i = 1; $i < count($this->cfg)+1; $i++) {
             
+<<<<<<< HEAD
+            $this->chanceArray[$i] = $this->cfg[$i]["chance"];
+=======
             $this->chanceArray[$i] = $this->cfg[$i]["szansa"];
+>>>>>>> 4328da2222e042ccf3459c219afbe7916a5d0fd4
             // var_dump($this->chanceArray[$i]);
            }
 
@@ -70,8 +78,13 @@ class Main extends PluginBase implements Listener{
             
              $this->index++;
              $this->idArray[$this->index] = $this->cfg[$i]["id"];
+<<<<<<< HEAD
+             $this->nameArray[$this->index] = $this->cfg[$i]["name"];
+             $this->amountArray[$this->index] = $this->cfg[$i]["amount"];
+=======
              $this->nameArray[$this->index] = $this->cfg[$i]["nazwa"];
              $this->amountArray[$this->index] = $this->cfg[$i]["ilosc"];
+>>>>>>> 4328da2222e042ccf3459c219afbe7916a5d0fd4
                 // var_dump($this->nameArray[$this->index]);
                 
             }    
@@ -108,14 +121,22 @@ class Main extends PluginBase implements Listener{
         $player = $pevent->getPlayer();
        
         $hand = $player->getInventory()->getItemInHand();
+<<<<<<< HEAD
+        if($hand->getCustomName() === TF::GOLD."PremiumCase"){
+=======
         if($hand->getCustomName() === TF::GOLD."Pandorka"){
+>>>>>>> 4328da2222e042ccf3459c219afbe7916a5d0fd4
         //  $block = $this->getBlock();
          
          $chance = mt_rand(1, 100);
 
            
              
+<<<<<<< HEAD
+            $player->sendMessage("§8[§bPremiumCase§8] §fYou get §8(§b".$this->amountArray[$chance]."§8) §f".$this->nameArray[$chance]);
+=======
             $player->sendMessage("§8[§bPandorka§8] §fZnaleziono §8(§b".$this->amountArray[$chance]."§8) §f".$this->nameArray[$chance]);
+>>>>>>> 4328da2222e042ccf3459c219afbe7916a5d0fd4
             
             $player->getInventory()->addItem(Item::get($this->idArray[$chance], 0, $this->amountArray[$chance])); 
             $player->getInventory()->removeItem(Item::get($this->pandorkaId, 0, 1));
@@ -146,7 +167,11 @@ class Main extends PluginBase implements Listener{
                     
                 for ($i = 1; $i < count($this->cfg)+1; $i++) {
                     
+<<<<<<< HEAD
+                    $this->chanceArray[$i] = $this->cfg[$i]["chance"];
+=======
                     $this->chanceArray[$i] = $this->cfg[$i]["szansa"];
+>>>>>>> 4328da2222e042ccf3459c219afbe7916a5d0fd4
                     // var_dump($this->chanceArray[$i]);
                 }
         
@@ -161,14 +186,24 @@ class Main extends PluginBase implements Listener{
                     
                     $this->index++;
                     $this->idArray[$this->index] = $this->cfg[$i]["id"];
+<<<<<<< HEAD
+                    $this->nameArray[$this->index] = $this->cfg[$i]["name"];
+                    $this->amountArray[$this->index] = $this->cfg[$i]["amount"];
+=======
                     $this->nameArray[$this->index] = $this->cfg[$i]["nazwa"];
                     $this->amountArray[$this->index] = $this->cfg[$i]["ilosc"];
+>>>>>>> 4328da2222e042ccf3459c219afbe7916a5d0fd4
                         // var_dump($this->nameArray[$this->index]);
                         
                     }    
                 } 
+<<<<<<< HEAD
+                $this->getLogger()->info(TF::GREEN."[PremiumCase] > Plugin and configuration has been reloaded");
+                $p->sendMessage(TF::GREEN."[PremiumCase] > Plugin and configuration has been reloaded");
+=======
                 $this->getLogger()->info(TF::GREEN."[PremiumCase] > Plugin oraz konfiguracje zostały przeładowane pomyślnie");
                 $p->sendMessage(TF::GREEN."[PremiumCase] > Plugin oraz konfiguracje zostały przeładowane pomyślnie");
+>>>>>>> 4328da2222e042ccf3459c219afbe7916a5d0fd4
                 return true;
             }
             break; 
@@ -183,12 +218,26 @@ class Main extends PluginBase implements Listener{
     
                     $item = Item::get(Item::ENDER_CHEST);
                     $item->setCount($args[2]);  
+<<<<<<< HEAD
+                    $item->setCustomName(TF::GOLD."PremiumCase");
+=======
                     $item->setCustomName(TF::GOLD."Pandorka");
+>>>>>>> 4328da2222e042ccf3459c219afbe7916a5d0fd4
                     $target->getInventory()->addItem($item);
                 
             
                 
 
+<<<<<<< HEAD
+                $target->sendMessage(TF::GREEN."You got ".$args[2]." premium cases from ".$p->getName());
+                $p->sendMessage(TF::GREEN."Player ".$target->getName()." get ".$args[2]." premiumcases");
+             }else{
+                $p->sendMessage(TF::RED."[PremiumCase] > Make sure you enter the correct nickname or that the player is online!");
+             }
+         }else{
+             $p->sendMessage(TF::RED."[PremiumCase] > Make sure you enter all arguments and that they are correct!");
+             return false;
+=======
                 $target->sendMessage(TF::GREEN."Otrzymałeś ".$args[2]." pandorek od ".$p->getName());
                 $p->sendMessage(TF::GREEN."Gracz ".$target->getName()." otrzymał ".$args[2]." pandorek");
              }else{
@@ -197,6 +246,7 @@ class Main extends PluginBase implements Listener{
          }else{
              $p->sendMessage(TF::RED."[PremiumCase] > Upewnij się że wpisałeś wszystkie argumenty oraz ze są poprawne!");
              $p->sendMessage(TF::RED."/pc give <nick> <ilosc>");
+>>>>>>> 4328da2222e042ccf3459c219afbe7916a5d0fd4
          } 
        
          
@@ -213,26 +263,46 @@ class Main extends PluginBase implements Listener{
 
                     $item = Item::get(Item::ENDER_CHEST);
                     $item->setCount($args[1]);  
+<<<<<<< HEAD
+                    $item->setCustomName(TF::GOLD."PremiumCase");
+                    $target->getInventory()->addItem($item);
+                
+                    $target->sendMessage(TF::GREEN."You got ".$args[2]." premium cases from ".$p->getName());
+=======
                     $item->setCustomName(TF::GOLD."Pandorka");
                     $target->getInventory()->addItem($item);
                 
                 $target->sendMessage(TF::GREEN."Otrzymałeś ".$args[1]." pandorek od ".$p->getName());
+>>>>>>> 4328da2222e042ccf3459c219afbe7916a5d0fd4
               }else{
                 $count++;
                
                     $item = Item::get(Item::ENDER_CHEST);
                     $item->setCount($args[1]);  
+<<<<<<< HEAD
+                    $item->setCustomName(TF::GOLD."PremiumCase");
+                    $target->getInventory()->addItem($item);
+                
+                    $target->sendMessage(TF::GREEN."[MeetMate] > You got ".$args[1]." premium cases from owner");
+=======
                     $item->setCustomName(TF::GOLD."Pandorka");
                     $target->getInventory()->addItem($item);
                 
                 $target->sendMessage(TF::GREEN."Otrzymałeś ".$args[1]." pandorek od wlasciciela");
+>>>>>>> 4328da2222e042ccf3459c219afbe7916a5d0fd4
 
               }
              }
             }
+<<<<<<< HEAD
+            $p->sendMessage(TF::GREEN."[PremiumCase] > You gave ".$args[1]." premium cases to ".$count." players");
+          }else{
+                $p->sendMessage(TF::RED."[PremiumCase] > Make sure you enter the correct nickname or that the player is online!");
+=======
             $p->sendMessage(TF::GREEN."[PremiumCase] > Przekazałeś po ".$args[1]." pandorek dla ".$count." graczy");
           }else{
                 $p->sendMessage(TF::RED."[PremiumCase] > Upewnij się że wpisales poprawny nick lub czy gracz jest online!");
+>>>>>>> 4328da2222e042ccf3459c219afbe7916a5d0fd4
              } 
             }   
             break;

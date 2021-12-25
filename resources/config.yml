@@ -1,3 +1,34 @@
+<<<<<<< HEAD
+# Instructions: 
+
+# 1:                  // Identifier of the table which should be increased successively with the introduction of lines
+#     id: 3          // ID of the item to be drawn
+#     name: "dirt" // The name that will be displayed to the player when the item is dropped
+#     chance: 20   //  Possible chance for a given item to be drawn
+#     amount: 2    // The amount the player gets
+
+
+#     NOTE!! the total number of chances of dropping items must NOT exceed 100 and MUST be equal to it
+# -----------------------------------------------------------------------------------------
+
+
+
+
+1:
+    id: 3
+    name: "dirt"
+    chance: 20
+    amount: 2
+
+# 2:
+#     id: 264
+#     name: "diamond"   // Make according to the pattern and only
+#     chance: 20
+#     amount: 1
+
+
+# REMEMBER!!!!!!! the total number of chances of dropping items must NOT exceed 100 and MUST be equal to it
+=======
 # Config działa na zasadzie: 
 
 # 1:                  // Identyfikator tablicy którą z wprowadzeniem kolenych należy zwiększać kolejno
@@ -26,3 +57,4 @@
 #     ilosc: 1
 
 
+>>>>>>> 4328da2222e042ccf3459c219afbe7916a5d0fd4
