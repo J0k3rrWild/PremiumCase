@@ -29,7 +29,7 @@ use Refaltor\Natof\CustomItem\CustomItem;
 
 class Main extends PluginBase implements Listener{
 
-  
+  //Nazwa głównego configa
   const SETTING_FILE = "config.yml";
   public $cfg;
   public $arrays;
@@ -46,28 +46,20 @@ class Main extends PluginBase implements Listener{
 
     public function onEnable(){
         $this->getServer()->getPluginManager()->registerEvents($this,$this);
-
-        $this->getLogger()->info(TF::GREEN."[PremiumCase] > Plugin and configuration loaded");
-
-        $this->getLogger()->info(TF::GREEN."[PremiumCase] > Plugin oraz konfiguracja została załadowana pomyślnie");
-
+        $player->sendMessage("§8[§bPremiumCase§8] §fYou get §8(§b".$this->amountArray[$chance]."§8) §f".$this->nameArray[$chance]);
         $this->index = 0;
         
-      
+        // Wczytanie configa
         $this->cfg = $this->getConfig()->getAll();
 
             
         for ($i = 1; $i < count($this->cfg)+1; $i++) {
             
-
             $this->chanceArray[$i] = $this->cfg[$i]["chance"];
-
-            $this->chanceArray[$i] = $this->cfg[$i]["szansa"];
-
-    
+            // var_dump($this->chanceArray[$i]);
            }
 
-      
+        //    var_dump($this->chanceArray);
 
         for ($i = 1; $i <= count($this->cfg); $i++) {
             
@@ -78,12 +70,8 @@ class Main extends PluginBase implements Listener{
             
              $this->index++;
              $this->idArray[$this->index] = $this->cfg[$i]["id"];
-
              $this->nameArray[$this->index] = $this->cfg[$i]["name"];
              $this->amountArray[$this->index] = $this->cfg[$i]["amount"];
-
-             $this->nameArray[$this->index] = $this->cfg[$i]["nazwa"];
-             $this->amountArray[$this->index] = $this->cfg[$i]["ilosc"];
                 // var_dump($this->nameArray[$this->index]);
                 
             }    
@@ -120,21 +108,14 @@ class Main extends PluginBase implements Listener{
         $player = $pevent->getPlayer();
        
         $hand = $player->getInventory()->getItemInHand();
-
         if($hand->getCustomName() === TF::GOLD."PremiumCase"){
-
-        if($hand->getCustomName() === TF::GOLD."Pandorka"){
-      
+        //  $block = $this->getBlock();
          
          $chance = mt_rand(1, 100);
 
            
              
-<<<<<<< HEAD
-            $player->sendMessage("§8[§bPremiumCase§8] §fYou get §8(§b".$this->amountArray[$chance]."§8) §f".$this->nameArray[$chance]);
-
-            $player->sendMessage("§8[§bPandorka§8] §fZnaleziono §8(§b".$this->amountArray[$chance]."§8) §f".$this->nameArray[$chance]);
->>>>>>> 4328da2222e042ccf3459c219afbe7916a5d0fd4
+         $player->sendMessage("§8[§bPremiumCase§8] §fYou get §8(§b".$this->amountArray[$chance]."§8) §f".$this->nameArray[$chance]);
             
             $player->getInventory()->addItem(Item::get($this->idArray[$chance], 0, $this->amountArray[$chance])); 
             $player->getInventory()->removeItem(Item::get($this->pandorkaId, 0, 1));
@@ -165,15 +146,11 @@ class Main extends PluginBase implements Listener{
                     
                 for ($i = 1; $i < count($this->cfg)+1; $i++) {
                     
-
                     $this->chanceArray[$i] = $this->cfg[$i]["chance"];
-
-                    $this->chanceArray[$i] = $this->cfg[$i]["szansa"];
-
-                  
+                    // var_dump($this->chanceArray[$i]);
                 }
         
-        
+                //    var_dump($this->chanceArray);
         
                 for ($i = 1; $i <= count($this->cfg); $i++) {
                     
@@ -184,23 +161,14 @@ class Main extends PluginBase implements Listener{
                     
                     $this->index++;
                     $this->idArray[$this->index] = $this->cfg[$i]["id"];
-
                     $this->nameArray[$this->index] = $this->cfg[$i]["name"];
                     $this->amountArray[$this->index] = $this->cfg[$i]["amount"];
-
-                    $this->nameArray[$this->index] = $this->cfg[$i]["nazwa"];
-                    $this->amountArray[$this->index] = $this->cfg[$i]["ilosc"];
-4
-                       
+                        // var_dump($this->nameArray[$this->index]);
                         
                     }    
                 } 
-
                 $this->getLogger()->info(TF::GREEN."[PremiumCase] > Plugin and configuration has been reloaded");
                 $p->sendMessage(TF::GREEN."[PremiumCase] > Plugin and configuration has been reloaded");
-
-                $this->getLogger()->info(TF::GREEN."[PremiumCase] > Plugin oraz konfiguracje zostały przeładowane pomyślnie");
-                $p->sendMessage(TF::GREEN."[PremiumCase] > Plugin oraz konfiguracje zostały przeładowane pomyślnie");
                 return true;
             }
             break; 
@@ -215,35 +183,20 @@ class Main extends PluginBase implements Listener{
     
                     $item = Item::get(Item::ENDER_CHEST);
                     $item->setCount($args[2]);  
-
-                    $item->setCustomName(TF::GOLD."PremiumCase");
-
                     $item->setCustomName(TF::GOLD."Pandorka");
-
                     $target->getInventory()->addItem($item);
                 
             
                 
 
-
-                $target->sendMessage(TF::GREEN."You got ".$args[2]." premium cases from ".$p->getName());
-                $p->sendMessage(TF::GREEN."Player ".$target->getName()." get ".$args[2]." premiumcases");
+                    $target->sendMessage(TF::GREEN."[PremiumCase] > You got ".$args[2]." premium cases from ".$p->getName());
+                    $p->sendMessage(TF::GREEN."Player ".$target->getName()." get ".$args[2]." premium cases");
              }else{
                 $p->sendMessage(TF::RED."[PremiumCase] > Make sure you enter the correct nickname or that the player is online!");
              }
          }else{
-             $p->sendMessage(TF::RED."[PremiumCase] > Make sure you enter all arguments and that they are correct!");
+            $p->sendMessage(TF::RED."[PremiumCase] > Make sure you enter all arguments and that they are correct!");
              return false;
-
-                $target->sendMessage(TF::GREEN."Otrzymałeś ".$args[2]." pandorek od ".$p->getName());
-                $p->sendMessage(TF::GREEN."Gracz ".$target->getName()." otrzymał ".$args[2]." pandorek");
-             }else{
-                $p->sendMessage(TF::RED."[PremiumCase] > Upewnij się że wpisałeś poprawny nick lub czy gracz jest online!");
-             }
-         }else{
-             $p->sendMessage(TF::RED."[PremiumCase] > Upewnij się że wpisałeś wszystkie argumenty oraz ze są poprawne!");
-             $p->sendMessage(TF::RED."/pc give <nick> <ilosc>");
-
          } 
        
          
@@ -260,45 +213,27 @@ class Main extends PluginBase implements Listener{
 
                     $item = Item::get(Item::ENDER_CHEST);
                     $item->setCount($args[1]);  
-
                     $item->setCustomName(TF::GOLD."PremiumCase");
                     $target->getInventory()->addItem($item);
                 
-                    $target->sendMessage(TF::GREEN."You got ".$args[2]." premium cases from ".$p->getName());
-
-                    $item->setCustomName(TF::GOLD."Pandorka");
-                    $target->getInventory()->addItem($item);
-                
-                $target->sendMessage(TF::GREEN."Otrzymałeś ".$args[1]." pandorek od ".$p->getName());
-
+                    $target->sendMessage(TF::GREEN."[PremiumCase] > You got ".$args[1]." premium cases from ".$p->getName());
               }else{
                 $count++;
                
                     $item = Item::get(Item::ENDER_CHEST);
                     $item->setCount($args[1]);  
-
                     $item->setCustomName(TF::GOLD."PremiumCase");
                     $target->getInventory()->addItem($item);
                 
-                    $target->sendMessage(TF::GREEN."[MeetMate] > You got ".$args[1]." premium cases from owner");
-
-                    $item->setCustomName(TF::GOLD."Pandorka");
-                    $target->getInventory()->addItem($item);
-                
-                $target->sendMessage(TF::GREEN."Otrzymałeś ".$args[1]." pandorek od wlasciciela");
-
+                    $target->sendMessage(TF::GREEN."[PremiumCase] > You got ".$args[1]." premium cases from owner");
 
               }
              }
             }
-
             $p->sendMessage(TF::GREEN."[PremiumCase] > You gave ".$args[1]." premium cases to ".$count." players");
           }else{
                 $p->sendMessage(TF::RED."[PremiumCase] > Make sure you enter the correct nickname or that the player is online!");
 
-            $p->sendMessage(TF::GREEN."[PremiumCase] > Przekazałeś po ".$args[1]." pandorek dla ".$count." graczy");
-          }else{
-                $p->sendMessage(TF::RED."[PremiumCase] > Upewnij się że wpisales poprawny nick lub czy gracz jest online!");
              } 
             }   
             break;
