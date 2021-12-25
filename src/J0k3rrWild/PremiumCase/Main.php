@@ -53,7 +53,7 @@ class Main extends PluginBase implements Listener{
 
         $this->index = 0;
         
-        // Wczytanie configa
+      
         $this->cfg = $this->getConfig()->getAll();
 
             
@@ -64,10 +64,10 @@ class Main extends PluginBase implements Listener{
 
             $this->chanceArray[$i] = $this->cfg[$i]["szansa"];
 
-            // var_dump($this->chanceArray[$i]);
+    
            }
 
-        //    var_dump($this->chanceArray);
+      
 
         for ($i = 1; $i <= count($this->cfg); $i++) {
             
@@ -124,7 +124,7 @@ class Main extends PluginBase implements Listener{
         if($hand->getCustomName() === TF::GOLD."PremiumCase"){
 
         if($hand->getCustomName() === TF::GOLD."Pandorka"){
-        //  $block = $this->getBlock();
+      
          
          $chance = mt_rand(1, 100);
 
@@ -170,10 +170,10 @@ class Main extends PluginBase implements Listener{
 
                     $this->chanceArray[$i] = $this->cfg[$i]["szansa"];
 
-                    // var_dump($this->chanceArray[$i]);
+                  
                 }
         
-                //    var_dump($this->chanceArray);
+        
         
                 for ($i = 1; $i <= count($this->cfg); $i++) {
                     
@@ -191,7 +191,7 @@ class Main extends PluginBase implements Listener{
                     $this->nameArray[$this->index] = $this->cfg[$i]["nazwa"];
                     $this->amountArray[$this->index] = $this->cfg[$i]["ilosc"];
 4
-                        // var_dump($this->nameArray[$this->index]);
+                       
                         
                     }    
                 } 
@@ -217,7 +217,7 @@ class Main extends PluginBase implements Listener{
                     $item->setCount($args[2]);  
 
                     $item->setCustomName(TF::GOLD."PremiumCase");
-=======
+
                     $item->setCustomName(TF::GOLD."Pandorka");
 
                     $target->getInventory()->addItem($item);
