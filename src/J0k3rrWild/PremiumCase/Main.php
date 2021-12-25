@@ -46,7 +46,7 @@ class Main extends PluginBase implements Listener{
 
     public function onEnable(){
         $this->getServer()->getPluginManager()->registerEvents($this,$this);
-        $player->sendMessage("§8[§bPremiumCase§8] §fYou get §8(§b".$this->amountArray[$chance]."§8) §f".$this->nameArray[$chance]);
+        $this->getLogger()->info(TF::GREEN."[PremiumCase] > Plugin and configuration loaded");
         $this->index = 0;
         
         // Wczytanie configa
@@ -183,7 +183,7 @@ class Main extends PluginBase implements Listener{
     
                     $item = Item::get(Item::ENDER_CHEST);
                     $item->setCount($args[2]);  
-                    $item->setCustomName(TF::GOLD."Pandorka");
+                    $item->setCustomName(TF::GOLD."PremiumCase");
                     $target->getInventory()->addItem($item);
                 
             
