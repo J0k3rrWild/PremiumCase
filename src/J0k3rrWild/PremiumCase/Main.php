@@ -50,7 +50,7 @@ class Main extends PluginBase implements Listener{
         $server = $this->getServer();
         $server->getCommandMap()->register("premiumcase", new Commands($this));
         $this->getServer()->getPluginManager()->registerEvents($this,$this);
-        $this->getLogger()->info(TF::GREEN."[PremiumCase] > Plugin and configuration loaded");
+      
         $this->index = 0;
         
         
