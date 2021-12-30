@@ -3,7 +3,7 @@ name: PremiumCase
 author: J0k3rrWild
 version: 1.4.2
 main: J0k3rrWild\PremiumCase\Main
-api: 4.0.0
+api: 4.0.3
 website: https://github.com/J0k3rrWild
 permissions:
   premiumcase:
