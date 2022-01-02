@@ -1,4 +1,4 @@
-# ChatRewardEvent - for PMMP API 4.0.3
+# PremiumCase - for PMMP API 4.0.3
 
 You need this plugin for API 3.26.2 instead? [CLICK HERE](https://github.com/J0k3rrWild/PremiumCase)
 
@@ -9,6 +9,10 @@ You need this plugin for API 3.26.2 instead? [CLICK HERE](https://github.com/J0k
 PremiumCase plugin with effects!
 
 ## Overview
+
+When a player places an enderchest (previously received by the command / pd), they will receive the reward you previously set depending on their luck! The exact configuration of the plugin is contained in the config. The plugin is safe and a regular enderchest will not work as a premiumcase, but only received with a command
+
+Video look:
 
 [![Watch the video](https://i.ibb.co/Vt4XHyk/Przechsadsadsadasdasdaswytywanie.png)](https://www.youtube.com/watch?v=Y1eraw-nFQE)
 
