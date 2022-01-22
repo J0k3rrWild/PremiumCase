@@ -22,11 +22,11 @@ Video look:
 
 ## Commands
 
-`` /pd give <player> <amount> `` <br>
+`` /pc give <player> <amount> `` <br>
 Permission: premiumcase.give<br>
-`` /pd giveall <amount> `` <br>
+`` /pc giveall <amount> `` <br>
 Permission: premiumcase.give<br>
-`` /pd reload `` <br>
+`` /pc reload `` <br>
 Permission: premiumcase.reload<br><br>
 
 Global admin permission(allow use all commands): ```premiumcase```
