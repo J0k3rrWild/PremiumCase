@@ -2,7 +2,7 @@
 
 You need this plugin for API 3.26.2 instead? [CLICK HERE](https://github.com/J0k3rrWild/PremiumCase)
 
-[![](https://poggit.pmmp.io/shield.state/PremiumCase)](https://poggit.pmmp.io/p/PremiumCase)
+[![](https://poggit.pmmp.io/shield.state/PremiumCase)](https://poggit.pmmp.io/p/PremiumCase) [![](https://poggit.pmmp.io/shield.dl.total/PremiumCase)](https://poggit.pmmp.io/p/PremiumCase)
 
 ## General info
 
@@ -18,7 +18,7 @@ Video look:
 
 ## Drop configuration
 
-![Drop](https://github.com/J0k3rrWild/PremiumCase/blob/api4/assets/2.PNG)
+![Drop](https://github.com/J0k3rrWild/PremiumCase/blob/api4/assets/2.PNG) 
 
 ## Commands
 
